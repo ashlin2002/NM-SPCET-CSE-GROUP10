@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="text-editor">
+        <input type="text" id="input-text" placeholder="Enter Text Here" style="width: 25%; padding: 5px;">
+        <div id="controls">
+            <button id="bold-button">Bold</button>
+            <button id="italic-button">Italic</button>
+            <select id="font-family-select">
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+            <button id="font-increase-button">Increase Font</button>
+            <button id="font-decrease-button">Decrease Font</button>
+            <input type="color" id="bg-color-picker">
+        </div>
+        <br><div id="output"></div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#bold-button').click(function() {
+                $('#output').css('font-weight', 'bold');
+                updateOutput();
+            });
+            
+            $('#italic-button').click(function() {
+                $('#output').css('font-style', 'italic');
+                updateOutput();
+            });
+            
+            $('#font-family-select').change(function() {
+                var fontFamily = $(this).val();
+                $('#output').css('font-family', fontFamily);
+                updateOutput();
+            });
+            
+            $('#font-increase-button').click(function() {
+                var currentSize = parseInt($('#output').css('font-size'));
+                $('#output').css('font-size', (currentSize + 2) + 'px');
+                updateOutput();
+            });
+            
+            $('#font-decrease-button').click(function() {
+                var currentSize = parseInt($('#output').css('font-size'));
+                $('#output').css('font-size', (currentSize - 2) + 'px');
+                updateOutput();
+            });
+            
+            $('#bg-color-picker').change(function() {
+                var bgColor = $(this).val();
+                $('body').css('background-color', bgColor);
+            });
+
+            function updateOutput() {
+                var inputText = $('#input-text').val();
+                $('#output').text(inputText);
+            }
+        });
+    </script>
+</body>
+</html>

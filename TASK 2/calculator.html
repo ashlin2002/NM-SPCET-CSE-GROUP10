@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .calculator {
+            width: 250px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input {
+            width: 90%;
+            margin: 5px 0;
+            padding: 5px;
+            font-size: 20px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        .button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <div class="button" onclick="appendToDisplay('7')">7</div>
+            <div class="button" onclick="appendToDisplay('8')">8</div>
+            <div class="button" onclick="appendToDisplay('9')">9</div>
+            <div class="button" onclick="appendToDisplay('+')">+</div>
+            <div class="button" onclick="appendToDisplay('4')">4</div>
+            <div class="button" onclick="appendToDisplay('5')">5</div>
+            <div class="button" onclick="appendToDisplay('6')">6</div>
+            <div class="button" onclick="appendToDisplay('-')">-</div>
+            <div class="button" onclick="appendToDisplay('1')">1</div>
+            <div class="button" onclick="appendToDisplay('2')">2</div>
+            <div class="button" onclick="appendToDisplay('3')">3</div>
+            <div class="button" onclick="appendToDisplay('*')">*</div>
+            <div class="button" onclick="clearDisplay()">C</div>
+            <div class="button" onclick="appendToDisplay('0')">0</div>
+            <div class="button" onclick="calculateResult('=')">=</div>
+            <div class="button" onclick="appendToDisplay('/')">/</div>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            var display = $('#display');
+            display.val(display.val() + value);
+        }
+
+        function clearDisplay() {
+            $('#display').val('');
+        }
+
+        function calculateResult() {
+            try {
+                var result = eval($('#display').val());
+                $('#display').val(result);
+            } catch (error) {
+                $('#display').val('Error');
+            }
+        }
+    </script>
+</body>
+</html>
